@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" , integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" ,crossorigin="anonymous")
+        link(rel="stylesheet", href="/main.css")
+        title #{title}
+    block styles
+    body
+        nav.nav-header
+            ul.nav-list
+                li.list-item
+                    a.list(href="/admin/add-product") Admin
+                li.list-item  
+                    a.list(href="/") Shop
+                li.list-item
+                    a.list(href="/cart") Cart
+                li.list-item
+                    a.list(href="/orders") Orders
+    block content
