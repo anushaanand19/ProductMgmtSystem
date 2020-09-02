@@ -1,10 +1,11 @@
 const mongoDb = require("mongodb");
+require("dotenv").config();
 const MongoClient = mongoDb.MongoClient;
 let _db;
 
 const MongoConnect = (callback) => {
   MongoClient.connect(
-    "mongodb+srv://anusha:c2ti8dvSjMqoZhjQ@cluster0.tem0q.mongodb.net/shop?retryWrites=true&w=majority",
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/shop?retryWrites=true&w=majority`,
     { useUnifiedTopology: true }
   )
     .then((client) => {
