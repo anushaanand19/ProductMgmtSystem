@@ -13,7 +13,7 @@ block content
                         h5.card-title #{prod.title}
                         p.card-text #{prod.author}
                         p.card-text #{prod.price}
-                        a(href=`/product/${prod._id}`)
-                            button.btn.btn-success(type="submit") Details
-                        a(href=`/cart/${prod._id}`)
-                            button.btn.btn-success(type="submit") Add to Cart
+                        a(href=`/admin/edit/${prod._id}`)
+                            button.btn.btn-success(type="submit") Edit
+                        a(href=`/admin/delete/${prod._id}`)
+                            button.btn.btn-success(type="submit") Delete

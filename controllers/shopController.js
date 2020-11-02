@@ -10,3 +10,13 @@ exports.getMainPage = (req, res, next) => {
     })
     .catch((err) => console.log(err));
 };
+
+exports.getProduct = (req, res, next) => {
+  const prodID = req.params.prodID;
+
+  Product.fetchByID(prodID)
+    .then((product) => {
+      res.render("../views/shop/product-details.pug", { prod: product });
+    })
+    .catch((err) => console.log(err));
+};
