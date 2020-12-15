@@ -5,7 +5,8 @@ body {
   font-family: "Balsamiq Sans", cursive;
 }
 .nav-header {
-  background-color: #26aa45;
+  background-color: rgba(38, 170, 69, 0.9);
+  color: whitesmoke;
   margin: 0;
   padding: 0;
   height: 88px;
@@ -24,8 +25,13 @@ body {
 
 .list {
   text-decoration: none;
-  color: #000000;
+  color: whitesmoke;
   text-transform: capitalize;
+}
+
+.list:hover {
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 .list-item {
