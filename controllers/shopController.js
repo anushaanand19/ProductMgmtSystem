@@ -16,6 +16,13 @@ exports.getProduct = (req, res, next) => {
   Product.fetchByID(prodID)
     .then((product) => {
       res.render("../views/shop/product-details.pug", { prod: product });
-    })
+    }).then(result=> console.log('Updated'))
     .catch((err) => console.log(err));
 };
+
+exports.postCart = (req, res, next) => {
+  const prodID = req.params.prodID;
+  Product.fetchByID(prodID).then(product => {
+    return req.user.addToCart(product);
+  }).then(result => console.log("Added the product to the cart")).catch(err=> console.log(err))
+}
