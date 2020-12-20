@@ -1,0 +1,18 @@
+extends ../layout/main-layout 
+
+block styles
+    link(rel="stylesheet", href="shop.css")
+
+block content 
+    .container.align-items-center.p-5
+        .row.align-items-start.text-center
+            h5.p-3.col.border.border-success Title
+            h5.p-3.col.border.border-success Price
+            h5.p-3.col.border.border-success Quantity
+        each cartItem in cartItems
+            .row.align-items-start.text-center
+                p.p-3.col.border.border-success #{cartItem.title}
+                p.p-3.col.border.border-success #{cartItem.price}
+                p.p-3.col.border.border-success #{cartItem.quantity}
+               
+                

@@ -15,7 +15,7 @@ app.set("view engine", "pug");
 app.set("views", "views");
 
 app.use((req, res, next) => {
-  User.fetchById('5fdb655ff16ac674dd0d2e73').then(user => {
+  User.fetchById('5fddb502f16ac674dd0d2e74').then(user => {
     req.user = new User(user._id, user.name, user.email, user.cart); 
     next();
   }).catch(err => console.log("User not found"));
