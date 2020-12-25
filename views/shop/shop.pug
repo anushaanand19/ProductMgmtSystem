@@ -15,5 +15,10 @@ block content
                         p.card-text #{prod.price}
                         a(href=`/product/${prod._id}`)
                             button.btn.btn-success(type="submit") Details
-                        a(href=`/postCart/${prod._id}`)
-                            button.btn.btn-success(type="submit") Add to Cart
+                        -var cpIDs = cartProductIDs.map(cartproduct=> cartproduct.productID.toString());
+                        -if (cpIDs.includes(`${prod._id}`))
+                            a(href=`/postCart/${prod._id}`)
+                                button.btn.btn-success(type="submit") Add Another
+                        -else
+                            a(href=`/postCart/${prod._id}`)
+                                button.btn.btn-success(type="submit") Add to Cart

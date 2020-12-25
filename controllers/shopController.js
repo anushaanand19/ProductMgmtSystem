@@ -4,11 +4,13 @@ const mongodb = require("mongodb");
 const getDb = require("../util/database").getDb;
 
 exports.getMainPage = (req, res, next) => {
+  const cartPrdIDs = req.user.cart.items;
   Product.fetchAll()
     .then((products) => {
       res.render("../views/shop/shop.pug", {
         title: "Shop",
         products: products,
+        cartProductIDs: cartPrdIDs,
       });
     })
     .catch((err) => console.log(err));
@@ -24,18 +26,13 @@ exports.getProduct = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-exports.getCart = (req, res, next) => {
+exports.getUserCart = (req, res, next) => {
   req.user
     .getCart()
     .then((cartItems) => {
-      let totalAmount = cartItems.reduce(
-        (acc, curr) => acc + parseInt(curr.price),
-        0
-      );
       res.render("../views/shop/display-cart.pug", {
         cartItems: cartItems,
         title: "Your Cart",
-        totalAmount: totalAmount,
       });
     })
     .catch((err) => console.log(err));
