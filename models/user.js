@@ -101,5 +101,38 @@ class User {
       })
       .catch((err) => console.log(err));
   }
+
+  addOrder() {
+    const db = getDb();
+    return this.getCart()
+      .then((products) => {
+        const order = {
+          items: products,
+          user: {
+            id: new mongoDB.ObjectID(this._id),
+            name: this.name,
+          },
+        };
+        return db.collection("orders").insertOne(order);
+      })
+      .then((res) => {
+        this.cart = { items: [] };
+        return db
+          .collection("users")
+          .updateOne(
+            { _id: new mongoDB.ObjectID(this._id) },
+            { $set: { cart: { items: [] } } }
+          );
+      });
+  }
+
+  getOrder() {
+    const db = getDb();
+    return db
+      .collection("orders")
+      .find({ "user.id": new mongoDB.ObjectID(this._id) })
+      .toArray();
+  }
 }
+
 module.exports = User;

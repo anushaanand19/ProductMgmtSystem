@@ -59,3 +59,11 @@ exports.deleteFromCart = (req, res, next) => {
     .then((result) => res.redirect("/cart"))
     .catch((err) => console.log(err));
 };
+
+exports.getOrder = (req, res, next) => {
+  req.user.getOrder().then((order) => {
+    res.render("shop/order.pug", {
+      orderItems: order,
+    });
+  });
+};
