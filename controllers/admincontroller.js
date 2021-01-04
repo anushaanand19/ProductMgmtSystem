@@ -15,11 +15,19 @@ exports.postAddProduct = (req, res, next) => {
   const price = req.body.price;
   const image = req.body.image;
   const description = req.body.description;
-  const product = new Product(title, author, price, image, description,null,req.user._id);
+  const product = new Product(
+    title,
+    author,
+    price,
+    image,
+    description,
+    null,
+    req.user._id
+  );
 
   product
     .save()
-    .then((prod) => res.redirect("/"))
+    .then((prod) => res.redirect("/admin/edit-product"))
     .catch((err) => console.log(err));
 };
 
@@ -38,7 +46,10 @@ exports.getEditProduct = (req, res, next) => {
   const prodID = req.params.prodID;
   Product.fetchByID(prodID)
     .then((product) =>
-      res.render("../views/admin/edit-product.pug", { prod: product })
+      res.render("../views/admin/edit-product.pug", {
+        prod: product,
+        title: "Edit Product",
+      })
     )
     .catch((err) => console.log(err));
 };
@@ -67,6 +78,6 @@ exports.updateEditProduct = (req, res, next) => {
 exports.deleteProduct = (req, res, next) => {
   const prodID = req.params.prodID;
   Product.deletebyID(prodID)
-    .then((result) => res.redirect("/"))
+    .then((result) => res.redirect("/admin/edit-product"))
     .catch((err) => console.log(err));
 };

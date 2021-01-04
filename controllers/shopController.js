@@ -20,7 +20,10 @@ exports.getProduct = (req, res, next) => {
   const prodID = req.params.prodID;
   Product.fetchByID(prodID)
     .then((product) => {
-      res.render("../views/shop/product-details.pug", { prod: product });
+      res.render("../views/shop/product-details.pug", {
+        prod: product,
+        title: "Product Details",
+      });
     })
     .then((result) => console.log("Updated"))
     .catch((err) => console.log(err));
@@ -64,6 +67,7 @@ exports.getOrder = (req, res, next) => {
   req.user.getOrder().then((order) => {
     res.render("shop/order.pug", {
       orderItems: order,
+      title: "Orders",
     });
   });
 };
